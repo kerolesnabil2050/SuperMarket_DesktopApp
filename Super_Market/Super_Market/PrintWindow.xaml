@@ -1,0 +1,63 @@
+﻿<Window x:Class="Super_Market.PrintWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Super_Market"
+        mc:Ignorable="d"
+        d:DesignHeight="400" d:DesignWidth="400"
+        Background="{x:Null}"
+        AllowsTransparency="True"
+        WindowStyle="None">
+    <Viewbox >
+        <Grid>
+        <Grid Name="griddata" Background="#FFD4D1D1" Height="800" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="279*"></ColumnDefinition>
+                <ColumnDefinition Width="136*"/>
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"></RowDefinition>
+                <RowDefinition Height="415"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel VerticalAlignment="Top" Grid.Row="0" Orientation="Horizontal" Grid.ColumnSpan="2">
+                <Label FontSize="30" VerticalAlignment="Center">Bon</Label>
+                <TextBlock x:Name="bon_number"  FontSize="25"  Margin="30 0 0 0 " FontWeight="Bold" ></TextBlock>
+            </StackPanel>
+
+
+            <StackPanel VerticalAlignment="Bottom" Orientation="Horizontal" Grid.ColumnSpan="2">
+                <Label FontSize="30">Date:</Label>
+                <TextBlock Name="TxtData" FontSize="30" FontWeight="Bold" Margin="80 15 0 0" ></TextBlock>
+            </StackPanel>
+
+            <DataGrid  Margin="15,15,15,15"  Name="printDataGraid" Grid.Row="1" Grid.ColumnSpan="2" AutoGenerateColumns="False" IsReadOnly="True" FontSize="30" >
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="FontWeight" Value="SemiBold"></Setter>
+                        <Setter Property="FontSize" Value="30"></Setter>
+                        <Setter Property="BorderThickness" Value="0,0,1,2"></Setter>
+
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns >
+                    <DataGridTextColumn x:Name="productname" Header="Product" Width="230" Binding="{Binding Path=Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Quantity" Width="190" Binding="{Binding Path=Quantity}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Price" Width="190" Binding="{Binding Path=SellingPrice}" ></DataGridTextColumn>
+                    <DataGridTextColumn Header="Total" Width="190" Binding="{Binding Path=TotalPrice}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" Width="250">
+                    <Label FontSize="25" Foreground="Black">Total Price:</Label>
+                    <TextBlock  Name="totalprice" FontSize="30"></TextBlock>
+                </StackPanel>
+               
+            </StackPanel>
+        </Grid>
+            <Button Background="#FF4646DA"  Width="150" FontSize="30" Margin="601,685,79,65" Height="50" Click="Button_Click">Save</Button>
+        </Grid>
+    </Viewbox>
+</Window>

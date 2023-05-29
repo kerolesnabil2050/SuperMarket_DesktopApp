@@ -1,0 +1,227 @@
+﻿<UserControl x:Class="Super_Market.Casher"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:local="clr-namespace:Super_Market"
+             mc:Ignorable="d" 
+             d:DesignHeight="850" d:DesignWidth="1100">
+    <Viewbox>
+        <Border CornerRadius="25" Padding="10" >
+            <Border.Background>
+                <ImageBrush ImageSource="backgroundImage.jfif"></ImageBrush>
+            </Border.Background>
+
+            <Grid Height="600" Width="1100">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.27*"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="45"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" Orientation="Horizontal">
+                    <Image Source="supermarket-logo-1.jpg" Width="55"></Image>
+                    <Label VerticalAlignment="Center" Foreground="DarkBlue" FontWeight="Bold" FontSize="20">Super Market MAKS</Label>
+                </StackPanel>
+                <StackPanel  Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" >
+                    <Button Width="28" Height="23" Margin="0 0 8 0" Padding="5" Foreground="#FF866AC9" Click="Minimize" Background="#FFAC91DA">
+                        <Icon:PackIconMaterial  Foreground="White"  Kind="WindowMinimize"></Icon:PackIconMaterial>
+                    </Button>
+                    <Button  Width="28" Height="23" Margin="0 0 8 0" Padding="5" Foreground="#FF866AC9" Click="Maximize_Minimize">
+                        <Icon:PackIconMaterial Height="12" Foreground="White" Kind="WindowMaximize"></Icon:PackIconMaterial>
+                    </Button>
+                    <Button  Width="28" Height="23" Padding="5" Background="red" Click="CloseWindow">
+                        <Icon:PackIconMaterial Foreground="White" Kind="ExitRun"></Icon:PackIconMaterial>
+                    </Button>
+                </StackPanel>
+
+                <Border CornerRadius="0 25 25 25" Margin="-10,6,9,-9" Background="White"  Grid.Column="0" Grid.Row="1">
+                    <Border.Effect>
+                        <DropShadowEffect ShadowDepth="1" BlurRadius="20" Opacity="0.4"></DropShadowEffect>
+                    </Border.Effect>
+
+                    <StackPanel Margin="5" VerticalAlignment="Center" >
+                        <Border CornerRadius="25" Background="White" Margin="0 0 0 19">
+
+                            <TextBlock Name="Cashername" Padding="40 0 0 0" Foreground="#FF866AC9" FontWeight="Bold" FontSize="30" Width="210" ></TextBlock>
+
+                        </Border>
+                        <ListView >
+                            <ListViewItem Foreground="#FF866AC9" Padding="10"    Style="{StaticResource MaterialDesignNavigationListBoxItem}">
+                                <StackPanel  Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Width="30" Height="25"  Kind="Home" FontWeight="Bold"></Icon:PackIconMaterial>
+                                    <TextBlock Padding="8 0 0 0" FontSize="18" FontWeight="Bold">Home</TextBlock>
+                                </StackPanel>
+                            </ListViewItem>
+
+
+
+                            <ListViewItem Foreground="#FF866AC9" Selected="ListViewItem_Selected" Padding="10" Margin="0 10 0 0"   VerticalAlignment="Bottom" Style="{StaticResource MaterialDesignNavigationListBoxItem}">
+                                <StackPanel Orientation="Horizontal" >
+                                    <Icon:PackIconMaterial Kind="Logout" Width="30" Height="25"/>
+                                    <TextBlock Padding="8 0 0 0"  FontSize="18" FontWeight="Bold"><Run Text="Logout"/></TextBlock>
+                                </StackPanel>
+                            </ListViewItem>
+                        </ListView>
+                    </StackPanel>
+                </Border>
+
+                <ContentControl   Grid.Column="1" Grid.Row="1">
+                    <Viewbox>
+                        <Border CornerRadius="35" Margin="0 0 0 -17" Padding="40"   Background="White">
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="1" BlurRadius="20" Opacity="0.4"></DropShadowEffect>
+                            </Border.Effect>
+                            <Grid Width="1400" Height="900">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="200"></RowDefinition>
+                                    <RowDefinition Height="200"></RowDefinition>
+                                    <RowDefinition Height="415"></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+
+                                </Grid.RowDefinitions>
+                                <StackPanel VerticalAlignment="Top" Grid.Row="0" Orientation="Horizontal">
+                                    <Label FontSize="30" VerticalAlignment="Center">Bon</Label>
+                                    <TextBox x:Name="bon_number" IsReadOnly="True" FontSize="25" Width="100" Margin="20 0 0 0 " Height="50" Background="#FFE2DBF4" PreviewTextInput="BonNumriconly" ></TextBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0 60 0 0">
+                                    <Label FontSize="30" >Category:</Label>
+                                    <ComboBox Name="comcat" Width="250" FontSize="30" VerticalAlignment="Top" Background="#FFE2DBF4" Margin="15" SelectionChanged="ComboBox_SelectionChanged">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <WrapPanel>
+                                                    <TextBlock Text="{Binding Path=Name}" FontSize="20"></TextBlock>
+                                                </WrapPanel>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                    <Label FontSize="30">Store:</Label>
+                                    <ComboBox Name="combstor"  Width="250" FontSize="30" VerticalAlignment="Top" Background="#FFE2DBF4" Margin="15" SelectionChanged="combstor_SelectionChanged">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <WrapPanel>
+                                                    <TextBlock Text="{Binding Path=Name}" FontSize="20"></TextBlock>
+                                                </WrapPanel>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel VerticalAlignment="Bottom" Orientation="Horizontal" Margin="0 70 0 0">
+                                    <Label FontSize="30">Date:</Label>
+                                    <TextBox IsReadOnly="True" Name="TxtData"  Width="250" FontSize="30" VerticalAlignment="Top" Background="#FFE2DBF4" Margin="80 15 0 0" ></TextBox>
+
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="0 70 0 0" >
+                                    <Label FontSize="30">Item:</Label>
+                                    <ComboBox Name="combproduct" Margin="22 15 0 0" HorizontalAlignment="Left" FontSize="30" VerticalAlignment="Top" Background="#FFE2DBF4" Width="250" SelectionChanged="ComboBox_SelectionChanged_1" >
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <WrapPanel>
+                                                    <TextBlock Text="{Binding Path=Name}" FontSize="20"></TextBlock>
+                                                </WrapPanel>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+                                </StackPanel>
+
+
+                                <Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="15">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition Width="42.99"></ColumnDefinition>
+                                        <ColumnDefinition Width="107.01"/>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel >
+                                        <Label FontSize="30">Product Name</Label>
+                                        <TextBox IsReadOnly="True" Name="TxtproductName" HorizontalAlignment="Left" FontSize="30" Width="200" Background="#FFE2DBF4"></TextBox>
+
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,237,0" >
+                                        <Label FontSize="30">Quantity:</Label>
+                                        <TextBox Name="TxtQua" HorizontalAlignment="Left" FontSize="30" Width="100" Background="#FFE2DBF4"  PreviewTextInput="Numericonly" ></TextBox>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="3">
+                                        <Label FontSize="30">Selling Price:</Label>
+                                        <TextBox Name="Txtsel" IsReadOnly="True" HorizontalAlignment="Left" FontSize="30" Width="200" Background="#FFE2DBF4" ></TextBox>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="4">
+                                        <Label FontSize="30">Toatal Quantity</Label>
+                                        <TextBox Name="txtTotQua" IsReadOnly="True" HorizontalAlignment="Left" FontSize="30" Width="200"  Background="#FFE2DBF4" ></TextBox>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="4" Grid.ColumnSpan="2" Margin="237,0,0,0">
+                                        <Label FontSize="30">Discount %:</Label>
+                                        <TextBox Name="TxtDis" HorizontalAlignment="Left" FontSize="30" Width="180" Background="#FFE2DBF4" ></TextBox>
+                                    </StackPanel>
+                                </Grid>
+                                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                                    <Button Width="150" Height="50" Margin="15" FontSize="28" Click="Button_Click">Add</Button>
+                                    <Button Width="150" Height="50" Margin="15" FontSize="28" Click="Button_Click_1">Delete</Button>
+                                    <Button Width="150" Height="50" Margin="15" FontSize="28" Click="Button_Click_2">Update</Button>
+                                    <Button Width="150" Height="50" Margin="15" FontSize="28" Click="Button_Click_3">GetTotal</Button>
+                                    <Button Width="150" Height="50" Margin="15" FontSize="28" Click="Button_Click_4">GetRemainder</Button>
+                                    <Button Width="150" Height="50" Margin="15" FontSize="28" Click="Button_Click_5">Print</Button>
+
+                                </StackPanel>
+                                <DataGrid Margin="15"  Name="SalesDataGraid" Grid.Row="2" Grid.ColumnSpan="2" AutoGenerateColumns="False" IsReadOnly="True" FontSize="30"  SelectionChanged="SalesDataGraid_SelectionChanged">
+                                    <DataGrid.Resources>
+                                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                                            <Setter Property="Background" Value="#FFE2DBF4"></Setter>
+                                            <Setter Property="FontWeight" Value="SemiBold"></Setter>
+                                            <Setter Property="FontSize" Value="30"></Setter>
+
+                                            <Setter Property="BorderThickness" Value="0,0,1,2"></Setter>
+
+                                        </Style>
+                                    </DataGrid.Resources>
+                                    <DataGrid.Columns >
+                                        <DataGridTextColumn x:Name="productname" Header="Product" Width="230" Binding="{Binding Path=Name}"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="Quantity" Width="190" Binding="{Binding Path=Quantity}"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="Total" Width="190" Binding="{Binding Path=Total}" ></DataGridTextColumn>
+                                        <DataGridTextColumn Header="Discount" Width="190" Binding="{Binding Path=Discount}"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="Total after Discount"  Binding="{Binding Path=TotalAfterDiscount}"></DataGridTextColumn>
+
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                                <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal" Width="250">
+                                        <Label FontSize="25" Foreground="#FF470187">Total Price:</Label>
+                                        <TextBox IsReadOnly="True" Name="lbltotpri" FontSize="30"></TextBox>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Width="320">
+                                        <Label FontSize="25" Foreground="#FF470187">Total After Discount:</Label>
+                                        <TextBox Name="lbltoAfter"   FontSize="30"></TextBox>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Width="250">
+                                        <Label FontSize="25" Foreground="#FF470187">Paid Money:</Label>
+                                        <TextBox  Name="TxtPaiMon" FontSize="30">0.0</TextBox>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Width="410">
+                                        <Label FontSize="25" Foreground="#FF470187">Remaining Money:</Label>
+                                        <TextBox IsReadOnly="True" Name="LblRem" FontSize="30"></TextBox>
+                                    </StackPanel>
+                                </StackPanel>
+
+                            </Grid>
+                        </Border>
+                    </Viewbox>
+                </ContentControl>
+
+
+            </Grid>
+        </Border>
+    </Viewbox>
+</UserControl>
